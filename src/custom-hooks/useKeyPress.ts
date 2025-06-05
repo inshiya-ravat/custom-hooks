@@ -20,6 +20,9 @@ export function useKeyPress(key: string) {
 
   useEffect(() => {
     window.addEventListener("keypress", checkKey);
+    return () => {
+      window.removeEventListener("keypress", checkKey);
+    };
   }, [checkKey]);
 
   return isKey;

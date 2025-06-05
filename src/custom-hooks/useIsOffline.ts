@@ -6,13 +6,14 @@ import { useEffect, useState } from "react";
 export function useIsOffline() {
   const [isOffline, setIsOffline] = useState(false);
 
+  function isUserOnline() {
+    setIsOffline(false);
+  }
   useEffect(() => {
-    window.addEventListener("keypress", () => {
-      setIsOffline(() => {
-        console.log(navigator.onLine);
-        return !navigator.onLine;
-      });
-    });
-  });
+    window.addEventListener("online", isUserOnline);
+    return () => {
+      window.removeEventListener("online", isUserOnline);
+    };
+  }, []);
   return isOffline;
 }

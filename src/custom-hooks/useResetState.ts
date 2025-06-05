@@ -3,8 +3,7 @@
 
 import { useState } from "react";
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export function useResetState(initialValue: any) {
+export function useResetState<T>(initialValue: T) {
   const [state, setState] = useState(initialValue);
 
   function reset() {
