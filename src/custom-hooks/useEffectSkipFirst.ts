@@ -5,12 +5,12 @@ export function useEffectSkipFirst(
   dependency: Array<unknown>,
 ) {
   const isFirstRender = useRef(true);
-
+  const callbackRef = useRef(callback);
   useEffect(() => {
     if (isFirstRender.current) {
       isFirstRender.current = false;
     } else {
-      callback();
+      callbackRef.current();
     }
-  }, [callback, isFirstRender, dependency]);
+  }, [callback, dependency]);
 }
