@@ -12,5 +12,5 @@ export function useEffectSkipFirst(
     } else {
       callbackRef.current();
     }
-  }, [callback, dependency]);
+  }, [dependency]);
 }
